@@ -18,7 +18,7 @@ export interface AuthContextType {
 // Demo Google Client ID - Replace with your actual client ID
 //const GOOGLE_CLIENT_ID = (import.meta as any).env?.VITE_GOOGLE_CLIENT_ID || '1087967398726-8nqfnj7u3l0m37p41r6nv1v8i4ghjcqf.apps.googleusercontent.com';
 
-const GOOGLE_CLIENT_ID: string = '61265558858-emur0thvro3ogvv66nbisu700a5uit51.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID: string = '61265558858-tfb2a8fgtklc85el9nosu6lrsgqvdfkc.apps.googleusercontent.com';
 
 export const initializeGoogleAuth = (): Promise<void> => {
   return new Promise((resolve, reject) => {
