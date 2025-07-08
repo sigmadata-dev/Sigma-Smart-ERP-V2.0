@@ -103,6 +103,7 @@ export const signInWithGoogle = (): Promise<User> => {
     // Trigger the sign-in prompt with better error handling
     try {
       window.google.accounts.id.prompt((notification: any) => {
+        console.log('Google Sign-In notification:', notification);
         if (notification.isNotDisplayed()) {
           console.error('Google Sign-In not displayed:', notification.getNotDisplayedReason());
           reject(new Error(`Google Sign-In not displayed: ${notification.getNotDisplayedReason()}`));
