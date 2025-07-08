@@ -19,12 +19,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const initAuth = async () => {
       try {
         await initializeGoogleAuth();
-        
+
         // Check for existing auth token
         const token = getAuthToken();
         if (token) {
-          // In a real app, verify the token with your backend
-          // For now, decode the JWT token
           try {
             const payload = JSON.parse(atob(token.split('.')[1]));
             setUser({
@@ -38,6 +36,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             console.error('Invalid token:', error);
             removeAuthToken();
           }
+        } else {
+          // Guest mode: set a default guest user
+          setUser({
+            id: 'guest',
+            email: 'guest@sigmadata.eu',
+            name: 'Guest User',
+            picture: '',
+            role: 'user'
+          });
         }
       } catch (error) {
         console.error('Failed to initialize Google Auth:', error);
