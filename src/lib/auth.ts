@@ -75,14 +75,17 @@ export const signInWithGoogle = (): Promise<User> => {
 
     // Set up the callback function
     window.handleGoogleSignIn = (response: any) => {
+      console.log('handleGoogleSignIn response:', response);
       try {
         if (!response.credential) {
+          console.error('No credential received in handleGoogleSignIn', response);
           reject(new Error('No credential received'));
           return;
         }
 
         // Decode JWT token (basic decoding - in production use a proper JWT library)
         const payload = JSON.parse(atob(response.credential.split('.')[1]));
+        console.log('Decoded JWT payload:', payload);
         
         const user: User = {
           id: payload.sub,
@@ -91,11 +94,12 @@ export const signInWithGoogle = (): Promise<User> => {
           picture: payload.picture,
           role: 'user' as const
         };
-
+        console.log('User object created from JWT:', user);
         // Store auth token
         setAuthToken(response.credential);
         resolve(user);
       } catch (error) {
+        console.error('Error in handleGoogleSignIn:', error, response);
         reject(new Error('Failed to process Google Sign-In response'));
       }
     };
