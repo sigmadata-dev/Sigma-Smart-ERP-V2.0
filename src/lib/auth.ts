@@ -59,6 +59,7 @@ const setupGoogleAuth = () => {
       callback: window.handleGoogleSignIn,
       auto_select: false,
       cancel_on_tap_outside: true,
+      use_fedcm_for_prompt: true, // activez explicit FedCM
     });
     console.log('Google Auth initialized successfully');
   } else {
