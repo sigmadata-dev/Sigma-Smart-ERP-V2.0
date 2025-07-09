@@ -132,3 +132,23 @@ export const getClienti = () => getModuleData('clienti');
 export const getFurnizori = () => getModuleData('furnizori');
 export const getCentreCost = () => getModuleData('centre-cost');
 export const getAngajati = () => getModuleData('angajati');
+
+export const addClient = async (client: any) => {
+  return apiRequest('/api/clienti', {
+    method: 'POST',
+    body: JSON.stringify(client),
+  });
+};
+
+export const updateClient = async (id: string, client: any) => {
+  return apiRequest(`/api/clienti/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(client),
+  });
+};
+
+export const deleteClient = async (id: string) => {
+  return apiRequest(`/api/clienti/${id}`, {
+    method: 'DELETE',
+  });
+};
