@@ -107,10 +107,15 @@ const ClientiPage: React.FC = () => {
       } else {
         // Adăugare
         const res = await addClient(data);
-        if (res.success && res.data) {
-          setClients((prev) => [...prev, res.data]);
+        if (
+          res.success &&
+          res.data &&
+          typeof res.data === 'object' &&
+          'ID_client' in res.data
+        ) {
+          setClients((prev) => [...prev, res.data as Client]);
         } else {
-          alert(res.error || 'Eroare la adăugare');
+          fetchClients();
         }
       }
       setModalOpen(false);
