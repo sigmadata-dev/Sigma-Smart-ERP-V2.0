@@ -8,6 +8,7 @@ import { Layout } from '@/components/layout/Layout';
 import { LoginPage } from '@/components/auth/LoginPage';
 import Index from './pages/Index';
 import NotFound from './pages/NotFound';
+import ClientiPage from './pages/Clienti';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +39,7 @@ const AppContent = () => {
         <Route path="/manopera" element={<div>Manoperă Module Coming Soon</div>} />
         <Route path="/contracte" element={<div>Contracte Module Coming Soon</div>} />
         <Route path="/pontaj" element={<div>Pontaj Module Coming Soon</div>} />
-        <Route path="/clienti" element={<div>Clienți Module Coming Soon</div>} />
+        <Route path="/clienti" element={<ClientiPage />} />
         <Route path="/furnizori" element={<div>Furnizori Module Coming Soon</div>} />
         <Route path="/centre-cost" element={<div>Centre Cost Module Coming Soon</div>} />
         <Route path="/angajati" element={<div>Angajați Module Coming Soon</div>} />
