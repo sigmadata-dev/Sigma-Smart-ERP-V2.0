@@ -275,3 +275,33 @@ function getRecentActivities(user, limit) {
   
   return { data: activities.slice(0, limit), status: 200 };
 }
+
+function doGet(e) {
+  return handleRequest(e, 'GET');
+}
+
+function doPost(e) {
+  return handleRequest(e, 'POST');
+}
+
+function handleRequest(e, method) {
+  var params = e && e.parameter ? e.parameter : {};
+  var path = params.path || '';
+  var user = null; // Poți adăuga validare token aici dacă vrei
+
+  // Exemplu de rutare simplă pentru /api/clienti
+  if (path.indexOf('api/clienti') === 0 || path === 'api/clienti') {
+    var result = handleModule(method, 'clienti', params, user);
+    return ContentService.createTextOutput(JSON.stringify(result.data))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader('Access-Control-Allow-Origin', CONFIG.CORS_ORIGIN)
+      .setHeader('Access-Control-Allow-Credentials', 'true');
+  }
+  // TODO: Adaugă și alte rute pentru celelalte module
+
+  // Default: 404
+  return ContentService.createTextOutput(JSON.stringify({ error: 'Not found' }))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeader('Access-Control-Allow-Origin', CONFIG.CORS_ORIGIN)
+    .setHeader('Access-Control-Allow-Credentials', 'true');
+}
