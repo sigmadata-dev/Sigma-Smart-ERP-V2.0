@@ -293,15 +293,11 @@ function handleRequest(e, method) {
   if (path.indexOf('api/clienti') === 0 || path === 'api/clienti') {
     var result = handleModule(method, 'clienti', params, user);
     return ContentService.createTextOutput(JSON.stringify(result.data))
-      .setMimeType(ContentService.MimeType.JSON)
-      .setHeader('Access-Control-Allow-Origin', CONFIG.CORS_ORIGIN)
-      .setHeader('Access-Control-Allow-Credentials', 'true');
+      .setMimeType(ContentService.MimeType.JSON);
   }
   // TODO: Adaugă și alte rute pentru celelalte module
 
   // Default: 404
   return ContentService.createTextOutput(JSON.stringify({ error: 'Not found' }))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeader('Access-Control-Allow-Origin', CONFIG.CORS_ORIGIN)
-    .setHeader('Access-Control-Allow-Credentials', 'true');
+    .setMimeType(ContentService.MimeType.JSON);
 }
